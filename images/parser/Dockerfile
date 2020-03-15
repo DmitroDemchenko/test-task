@@ -1,8 +1,8 @@
 FROM python:3
 RUN pip install  Flask
 
-ADD parcer.py /
+ADD parser.py /
 
 EXPOSE 9001
 
-CMD [ "python", "./parcer.py" ]
+CMD [ "python", "./parser.py" ]
