@@ -92,5 +92,5 @@ helm install monitoring helm/application/monitoring/ -n monitoring
 
 ## Result of work:
 
-Service is available now here: http://34.91.246.229\n
-Prometheus metrics and custom alerts here: http://34.91.37.163:9090
+* Service is available now here: http://34.91.246.229
+* Prometheus metrics and custom alerts here: http://34.91.37.163:9090
