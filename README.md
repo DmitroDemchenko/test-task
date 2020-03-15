@@ -1,5 +1,11 @@
 ## Prepare kubernetes cluster in GKE using terraform:
-##### 1.1 Create project with name `test-21111992` or create your own and replace this value into `terraform/variable.tf -> project`
+##### 1.1 Create project with name `test-21111992` or create your own and replace this value in variable.tf file
+```
+variable "project" {
+  type         = string
+  default      = "${project_name}"
+}
+```
 ##### 1.2 Create service account with Editor Role
 ##### 1.3 Generate key in json format and save it as ` terraform-admin.json ` in `~/.config/gcloud/`
 ##### 1.4 Go to terraform folder and initialize plugins:
@@ -43,8 +49,8 @@ cd helm/application/backend
 in values.yaml replace image.repository value
 ```
 ##### 2.2 Create service account to get access to GCR
-######      2.2.1 Create SA with Editor role and generate key in json format
-######      2.2.2 Create secret for GCR:
+###### 2.2.1 Create SA with Editor role and generate key in json format
+###### 2.2.2 Create secret for GCR:
 ```
 kubectl create secret -n application docker-registry helm-secret  \
 --docker-server=eu.gcr.io \
