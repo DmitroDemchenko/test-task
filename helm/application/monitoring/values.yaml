@@ -1,0 +1,71 @@
+prometheus-operator:
+
+  coreDns:
+    enabled: false
+
+  kubeApiServer:
+    enabled: false
+
+  kubeControllerManager:
+    enabled: false
+
+  kubeEtcd:
+    enabled: false
+
+  kubeScheduler:
+    enabled: false
+
+  grafana:
+    enabled: false
+
+  prometheus:
+    service:
+      type: LoadBalancer
+
+  #Disable default rules to see only my custom alerts
+  defaultRules:
+    rules:
+      alertmanager: false
+      etcd: false
+      general: false
+      k8s: false
+      kubeApiserver: false
+      kubeApiserverError: false
+      kubePrometheusNodeAlerting: false
+      kubePrometheusNodeRecording: false
+      kubernetesAbsent: false
+      kubernetesApps: false
+      kubernetesResources: false
+      kubernetesStorage: false
+      kubernetesSystem: false
+      kubeScheduler: false
+      network: false
+      node: false
+      prometheus: false
+      prometheusOperator: false
+      time: false
+
+  additionalPrometheusRules:
+    - name: custom-alerts
+      groups:
+        - name: application-alerts
+          rules:
+          - alert: ParcerApplicationService
+            expr: kube_pod_container_status_ready{namespace="application",pod=~"parser-.+"} < 1
+            labels:
+              severity: warning
+            for: 10s
+            annotations:
+              summary: "Application {{ $labels.pod }} Service Down "
+              description: "Pod is not ready, please check "
+
+          - alert: NginxApplicationService
+            expr: kube_pod_container_status_ready{namespace="application",pod=~"nginx-.+"} < 1
+            for: 10s
+            annotations:
+              summary: "Application {{ $labels.pod }} Service Down "
+              description: "Pod is not ready, please check "
+
+  alertmanager:
+    service:
+      type: LoadBalancer
