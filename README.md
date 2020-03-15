@@ -1,7 +1,7 @@
 ## Prepare kubernetes cluster in GKE using terraform:
 ##### 1.1 Create project with name `test-21111992` or create your own and replace this value into `terraform/variable.tf -> project`
 ##### 1.2 Create service account with Editor Role
-##### 1.3 Generate key in json format and save it as `terraform-admin.json` in `~/.config/gcloud/`
+##### 1.3 Generate key in json format and save it as ` terraform-admin.json ` in `~/.config/gcloud/`
 ##### 1.4 Go to terraform folder and execute terraform init to initialize plugins
 ##### 1.5 Execute terraform apply form terraform folder and wait until cluster will be created in you project
 ##### 1.6 Switch on new cluster

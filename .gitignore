@@ -2,4 +2,5 @@
 *.lock
 *.idea
 *.tfstate
+*.backup
 *.DS_Storex
