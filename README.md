@@ -1,4 +1,4 @@
-# Prepare kubernetes cluster in GKE using terraform:
+## Prepare kubernetes cluster in GKE using terraform:
 ##### 1.1 Create project with name `test-21111992` or create your own and replace this value into `terraform/variable.tf -> project`
 ##### 1.2 Create service account with Editor Role
 ##### 1.3 Generate key in json format and save it as terraform-admin.json in `~/.config/gcloud/`
@@ -13,11 +13,9 @@ gcloud container clusters list
 ```
 gcloud container clusters get-credentials my-gke-cluster --zone us-central1
 ```
-### My result:
 
 
-
-# Install helm chart with backend service.
+## Install helm chart with backend service.
 
 > 2.1 If you use your own project, you have to create Google Container Registery and push image there.
 ###### 2.1.1 Execute image build:
@@ -60,14 +58,14 @@ helm install backend ./helm/application/backend -n application
 ```
 kubectl scale --replicas=2 deployment.apps/parser -n application
 ```
-# Install frontend service.
+## Install frontend service.
 #### 3.1 Run kubectl command to apply manifest
 ```
  kubectl apply -f frontend/frontend.yaml -n application
 
 ```
 
-# Install monitoring:
+## Install monitoring:
 ##### 4.1 Create namespace before install helm chart:
 ```
 kubectl create namespace monitoring
