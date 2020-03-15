@@ -1,4 +1,5 @@
 *.tgz
 *.lock
 *.idea
-*.state
+*.tfstate
+*.DS_Store
