@@ -14,3 +14,18 @@ containerPort: 9001
 service:
   type: ClusterIP
   port: 9001
+
+mariadb:
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "metrics"
+  rootUser:
+    password: "qwerty56"
+  db:
+    user: "demchenko"
+    name: "test_database"
+  metrics:
+    enabled: true
+
+
+

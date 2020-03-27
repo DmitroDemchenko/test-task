@@ -16,11 +16,25 @@ prometheus-operator:
     enabled: false
 
   grafana:
-    enabled: false
-
-  prometheus:
+    enabled: true
     service:
       type: LoadBalancer
+
+  prometheus:
+    additionalServiceMonitors:
+      - name: "prometheus-operator-mysql"
+        selector:
+          matchLabels:
+            app: mariadb
+        namespaceSelector:
+          matchNames:
+            - application
+        endpoints:
+          - port: metrics
+
+    service:
+      type: LoadBalancer
+
 
   #Disable default rules to see only my custom alerts
   defaultRules:
@@ -65,6 +79,8 @@ prometheus-operator:
             annotations:
               summary: "Application {{ $labels.pod }} Service Down "
               description: "Pod is not ready, please check "
+
+
 
   alertmanager:
     service:
